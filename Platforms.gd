@@ -1,8 +1,10 @@
+# A group of platforms, represents a phrase.
+
 class_name Platforms
 
 extends Node2D
 
-const PlatformsScene = preload("res://platforms.tscn")
+const PlatformsScene := preload("res://platforms.tscn")
 
 var phrase : String
 var screen_size : Vector2
@@ -20,7 +22,7 @@ static func New(phrase : String, size : Vector2, position) -> Platforms:
 	new.position = position
 	return new
 
-func _ready():
+func _ready() -> void:
 	var count := len(phrase)
 	self.width = (count * 60) + ((count -1) * 10)
 	var start : float = ((self.screen_size.x - self.width) / 2) - 10
@@ -35,18 +37,18 @@ func _ready():
 		var platform = Platform.New(start + (i * 80), 0, phrase[i])
 		self.add_platform(platform)
 
-func add_platform(p):
+func add_platform(p) -> void:
 	self.platforms.append(p)
 	self.add_child(p)
 
-func get_letters():
+func get_letters() -> Array[String]:
 	var letters = Array()
 	for platform in self.platforms:
 		var letter = platform.get_letter()
 		letters.append(letter)
 	return letters
 
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	if not self.scroll_targets:
 		return
 	var target := self.scroll_targets[self.scroll_target]

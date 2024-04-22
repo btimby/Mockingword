@@ -1,3 +1,5 @@
+# Queue slot for a letter.
+
 class_name Slot
 
 extends Node2D

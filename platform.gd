@@ -1,3 +1,5 @@
+# Captures letters.
+
 class_name Platform
 
 extends StaticBody2D
@@ -18,11 +20,11 @@ static func New(x : int, y : int, char : String) -> Platform:
 	new.expected = char
 	return new
 
-func capture(letter):
+func capture(letter : Letter) -> void:
 	self.letter = letter.letter
 	letter.queue_free()
 
-func set_letter(val : String):
+func set_letter(val : String) -> void:
 	self._letter = val
 	self.letter_sprite.texture = LetterSprites.sprites[val]
 

@@ -1,3 +1,5 @@
+# The queue of upcoming letters to be shot.
+
 class_name Queue
 
 extends Node2D
@@ -45,10 +47,6 @@ func shift() -> String:
 	for s in self.slots:
 		s.slide_left(60)
 	self.slots[1].fade_in(1.0)
-	head.fade_out(self._pop_head)
+	head.fade_out(func (): self.slots.pop_front().queue_free())
 	tail.fade_in(0.3, 0.0)
 	return head.letter
-
-func _pop_head() -> void:
-	var head = self.slots.pop_front()
-	head.queue_free()

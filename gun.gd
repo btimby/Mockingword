@@ -1,3 +1,5 @@
+# Gun, shoots letters, a core gameplay element.
+
 class_name Gun
 
 extends Node2D
@@ -23,7 +25,7 @@ static func New(position) -> Gun:
 	new.position = position
 	return new
 
-func _ready():
+func _ready() -> void:
 	self.gravity = PhysicsServer2D.area_get_param(
 			get_viewport().find_world_2d().space,
 			PhysicsServer2D.AREA_PARAM_GRAVITY
@@ -33,7 +35,7 @@ func _ready():
 	self.line.width = 2
 	self.line.modulate = Color.RED
 
-func _process(delta):
+func _process(delta : float) -> void:
 	if Input.is_action_pressed("ui_left"):
 		self.aim_speed += self.aim_min_speed * self.aim_accel
 	elif Input.is_action_pressed("ui_right"):
@@ -46,12 +48,14 @@ func _process(delta):
 	elif self.aim_speed < 0 and self.rotation > -1.3:
 		self.rotation += self.aim_speed * delta
 
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	self._draw_trajectory(delta)
 
-func _draw_trajectory(delta : float):
+func _draw_trajectory(delta : float) -> void:
 	var pos := self.muzzle.global_position
 	# NOTE: No idea why I have to divide speed by 4 below!
+	# TODO: I think I need to drop physics and just calculate the trajectory
+	# myself. Physics is overkill and then I can accurately predict the path.
 	var velocity := Vector2(0, self.bullet_speed / 5).rotated(self.rotation)
 	self.line.clear_points()
 	for i in range(self.trajectory_points):
@@ -59,7 +63,7 @@ func _draw_trajectory(delta : float):
 		velocity.y += (self.gravity * delta)
 		pos += velocity
 
-func shoot(letter):
+func shoot(letter : String) -> void:
 	if self.reloading:
 		return
 	var projectile := Letter.New(

@@ -1,3 +1,5 @@
+# Obstacle that converts letter to a random one when touched.
+
 class_name Cipher
 
 extends Obstacle
@@ -13,7 +15,7 @@ var _timer : Timer
 @export var color : Color = Color(255,0,0,255)
 @export var color_threshold : float = 0.5
 
-func _ready():
+func _ready() -> void:
 	self._timer = Timer.new()
 	self._timer.wait_time = self.redraw
 	self._timer.connect("timeout", self._redraw)
@@ -21,7 +23,7 @@ func _ready():
 	self._timer.start()
 	self._redraw()
 
-func _redraw():
+func _redraw() -> void:
 	var noise_gen := FastNoiseLite.new()
 	noise_gen.seed = randi()
 	var noise := noise_gen.get_image(WIDTH, HEIGHT)
@@ -38,7 +40,7 @@ func _redraw():
 	var texture := ImageTexture.create_from_image(image)
 	self.sprite.texture = texture
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(body : Variant) -> void:
 	if "letter" not in body:
 		return
 	var i : int = randi() % 26
