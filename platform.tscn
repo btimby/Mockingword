@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfkl08awcvr7e"]
+
+[ext_resource type="Script" path="res://platform.gd" id="1_4jo72"]
+[ext_resource type="Texture2D" uid="uid://ci1j2l5j0geyq" path="res://images/platform.png" id="1_4y2r6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yydrw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsdek"]
+size = Vector2(51, 12)
+
+[node name="Platform" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_yydrw")
+script = ExtResource("1_4jo72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_tsdek")
+
+[node name="PlatformSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_4y2r6")
+
+[node name="LetterSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
+scale = Vector2(0.25, 0.25)

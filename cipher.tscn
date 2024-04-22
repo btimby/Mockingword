@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b72jub73dkf3v"]
+
+[ext_resource type="PackedScene" uid="uid://oa4h0bxwk1wy" path="res://obstacle.tscn" id="1_g3ql0"]
+[ext_resource type="Script" path="res://cipher.gd" id="2_qm4gm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_566bm"]
+size = Vector2(40, 40)
+
+[node name="Obstacle" instance=ExtResource("1_g3ql0")]
+script = ExtResource("2_qm4gm")
+redraw = 0.05
+color = Color(0, 0, 0.980392, 1)
+color_threshold = 0.5
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_566bm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

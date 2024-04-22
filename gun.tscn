@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce78g8hsl2s7n"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_mc2hq"]
+[ext_resource type="Texture2D" uid="uid://b83y3k8l4ck6f" path="res://images/cyber_cannon.png" id="2_p1h3i"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_mc2hq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(1, 15)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_p1h3i")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 40)
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+width = 1.0

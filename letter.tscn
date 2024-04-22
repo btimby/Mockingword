@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://crxtn3pt02ic5"]
+
+[ext_resource type="Script" path="res://letter.gd" id="1_lug17"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hid6g"]
+size = Vector2(33, 32)
+
+[node name="Letter" type="RigidBody2D"]
+script = ExtResource("1_lug17")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_hid6g")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -29.0
+offset_right = 20.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, -1)
+scale = Vector2(1.65, 1.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

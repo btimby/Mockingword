@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://kfs8qt8qb2al"]
+
+[ext_resource type="Texture2D" uid="uid://b7ig70amofry1" path="res://images/output_1164388124_0.jpg" id="1_iopqa"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_o0mxp"]
+[ext_resource type="Script" path="res://Path2D.gd" id="3_6063s"]
+[ext_resource type="PackedScene" uid="uid://b72jub73dkf3v" path="res://cipher.tscn" id="3_ym2ap"]
+
+[sub_resource type="Curve2D" id="Curve2D_4blls"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 645, 200, 0, 0, 0, 0, 135, 310, 0, 0, 0, 0, 987, 512, 0, 0, 0, 0, 646, 201)
+}
+point_count = 4
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_o0mxp")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.145098)
+position = Vector2(583, 323)
+texture = ExtResource("1_iopqa")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4blls")
+script = ExtResource("3_6063s")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(645, 200)
+rotates = false
+
+[node name="Obstacle2" parent="Path2D/PathFollow2D" instance=ExtResource("3_ym2ap")]
+color = Color(0.207843, 1, 0.0627451, 1)
+color_threshold = 0.1
