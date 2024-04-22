@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://baymuluqxo2qy"]
+
+[ext_resource type="Script" path="res://murderhole.gd" id="1_et5gh"]
+[ext_resource type="Texture2D" uid="uid://daca1jtot6ljd" path="res://images/murderhole.png" id="2_8wyub"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_et5gh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8wyub")

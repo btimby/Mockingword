@@ -24,6 +24,10 @@ func capture(letter : Letter) -> void:
 	self.letter = letter.letter
 	letter.queue_free()
 
+func release():
+	self._letter = ''
+	self.letter_sprite.texture = null
+
 func set_letter(val : String) -> void:
 	self._letter = val
 	self.letter_sprite.texture = LetterSprites.sprites[val]

@@ -11,6 +11,8 @@ script = ExtResource("2_qm4gm")
 redraw = 0.05
 color = Color(0, 0, 0.980392, 1)
 color_threshold = 0.5
+width = 41
+height = 41
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 

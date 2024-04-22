@@ -1,15 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://kfs8qt8qb2al"]
+[gd_scene load_steps=10 format=3 uid="uid://kfs8qt8qb2al"]
 
 [ext_resource type="Texture2D" uid="uid://b7ig70amofry1" path="res://images/output_1164388124_0.jpg" id="1_iopqa"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_o0mxp"]
 [ext_resource type="Script" path="res://Path2D.gd" id="3_6063s"]
 [ext_resource type="PackedScene" uid="uid://b72jub73dkf3v" path="res://cipher.tscn" id="3_ym2ap"]
+[ext_resource type="Script" path="res://Path2D2.gd" id="5_d5hf4"]
+[ext_resource type="PackedScene" uid="uid://baymuluqxo2qy" path="res://murderhole.tscn" id="5_iy5r0"]
 
 [sub_resource type="Curve2D" id="Curve2D_4blls"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 645, 200, 0, 0, 0, 0, 135, 310, 0, 0, 0, 0, 987, 512, 0, 0, 0, 0, 646, 201)
 }
 point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_1c4nl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 53, 109, 0, 0, 0, 0, 1083, 110)
+}
+point_count = 2
+
+[sub_resource type="Environment" id="Environment_i3b72"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/1 = 255.0
+glow_levels/2 = 255.0
+glow_levels/3 = 255.0
+glow_levels/4 = 255.0
+glow_levels/5 = 255.0
+glow_levels/6 = 255.0
+glow_levels/7 = 255.0
+glow_blend_mode = 1
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_o0mxp")
@@ -30,3 +51,21 @@ rotates = false
 [node name="Obstacle2" parent="Path2D/PathFollow2D" instance=ExtResource("3_ym2ap")]
 color = Color(0.207843, 1, 0.0627451, 1)
 color_threshold = 0.1
+width = 80
+height = 80
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1c4nl")
+script = ExtResource("5_d5hf4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(53, 109)
+rotation = 0.000970874
+
+[node name="Node2D" parent="Path2D2/PathFollow2D" instance=ExtResource("5_iy5r0")]
+position = Vector2(-2.86102e-06, 1.54972e-06)
+rotation = 0.00323623
+interval = 12.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i3b72")
