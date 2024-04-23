@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var screen_size := get_viewport().get_visible_rect().size
 @onready var platforms_node : Node = get_node("Platforms")
+@onready var audio : AudioStreamPlayer2D = get_node("AudioStreamPlayer2D")
 
 var phrase := "TRUMP WON"
 var queue : Queue
@@ -25,6 +26,7 @@ func _ready() -> void:
 		Vector2(self.screen_size.x / 2 + 100, 30)
 	)
 	self.add_child(self.queue)
+	self.audio.play()
 
 func _on_letter_completed(platform : Platform) -> void:
 	for p in self.platforms:

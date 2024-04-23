@@ -23,6 +23,7 @@ LetterSprites="*res://letter_sprites.tscn"
 
 window/size/viewport_width=1138
 window/size/viewport_height=640
+window/size/resizable=false
 
 [editor_plugins]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://kfs8qt8qb2al"]
+[gd_scene load_steps=12 format=3 uid="uid://kfs8qt8qb2al"]
 
 [ext_resource type="Texture2D" uid="uid://b7ig70amofry1" path="res://images/output_1164388124_0.jpg" id="1_iopqa"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_o0mxp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Path2D2.gd" id="5_d5hf4"]
 [ext_resource type="PackedScene" uid="uid://baymuluqxo2qy" path="res://murderhole.tscn" id="5_iy5r0"]
 [ext_resource type="PackedScene" uid="uid://bfkl08awcvr7e" path="res://platform.tscn" id="7_sup70"]
+[ext_resource type="AudioStream" uid="uid://i65xjuj25m67" path="res://music/the-epic-2-by-rafael-krux(chosic.com).mp3" id="8_u5rtk"]
 
 [sub_resource type="Curve2D" id="Curve2D_4blls"]
 _data = {
@@ -103,3 +104,6 @@ expected = "O"
 [node name="N" parent="Platforms" instance=ExtResource("7_sup70")]
 position = Vector2(1070, 600)
 expected = "N"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_u5rtk")
