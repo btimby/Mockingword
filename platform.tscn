@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfkl08awcvr7e"]
 
-[ext_resource type="Script" path="res://platform.gd" id="1_4jo72"]
 [ext_resource type="Texture2D" uid="uid://ci1j2l5j0geyq" path="res://images/platform.png" id="1_4y2r6"]
+[ext_resource type="Script" path="res://platform.gd" id="1_slat3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yydrw"]
 
@@ -10,7 +10,7 @@ size = Vector2(51, 12)
 
 [node name="Platform" type="StaticBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_yydrw")
-script = ExtResource("1_4jo72")
+script = ExtResource("1_slat3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

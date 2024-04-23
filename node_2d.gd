@@ -2,30 +2,48 @@
 extends Node2D
 
 @onready var screen_size := get_viewport().get_visible_rect().size
+@onready var platforms_node : Node = get_node("Platforms")
 
 var phrase := "TRUMP WON"
 var queue : Queue
-var platforms : Platforms
+var platforms : Array[Platform]
+var _won : bool
 var gun : Node2D
 var left : StaticBody2D
 var right : StaticBody2D
 
 func _ready() -> void:
 	self._create_boundaries()
+	for p : Platform in self.platforms_node.get_children():
+		p.letter_completed.connect(func (): self._on_letter_completed(p))
+		self.platforms.append(p)
 	self.gun = Gun.New(Vector2(self.screen_size.x / 2, 0))
 	self.add_child(self.gun)
-	self.platforms = Platforms.New(
-		self.phrase,
-		self.screen_size,
-		Vector2(0, self.screen_size.y - 10)
-	)
-	self.add_child(self.platforms)
 	self.queue = Queue.New(
 		self.phrase,
 		6,
 		Vector2(self.screen_size.x / 2 + 100, 30)
 	)
 	self.add_child(self.queue)
+
+func _on_letter_completed(platform : Platform) -> void:
+	for p in self.platforms:
+		if p.check_complete():
+			continue
+		return
+	# Player won!
+	self._won = true
+	var t := Timer.new()
+	t.wait_time = 1.0
+	t.timeout.connect(self._fire_salvo)
+	self.add_child(t)
+	t.start()
+	self._fire_salvo()
+	# TODO: call game scene to count score and advance game.
+
+func _fire_salvo() -> void:
+	for p in self.platforms:
+		p.confetti()
 
 func _create_sbody() -> StaticBody2D:
 	var body := StaticBody2D.new()

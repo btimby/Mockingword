@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxjnud1pc4ueq"]
+
+[ext_resource type="Gradient" uid="uid://binq3noo75sah" path="res://resources/confetti_gradient.tres" id="1_25tpx"]
+[ext_resource type="Script" path="res://confetti.gd" id="1_heg0w"]
+
+[node name="Confetti" type="Node2D"]
+script = ExtResource("1_heg0w")
+
+[node name="Green" type="CPUParticles2D" parent="."]
+self_modulate = Color(4.33177e-07, 0.587142, 0, 1)
+emitting = false
+amount = 32
+lifetime = 1.25
+one_shot = true
+explosiveness = 0.77
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, -10)
+spread = 20.0
+initial_velocity_min = 818.18
+initial_velocity_max = 1000.0
+linear_accel_min = 26.26
+linear_accel_max = 74.74
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = ExtResource("1_25tpx")
+
+[node name="Blue" type="CPUParticles2D" parent="."]
+self_modulate = Color(0, 0.454902, 1, 1)
+emitting = false
+amount = 32
+lifetime = 1.25
+one_shot = true
+explosiveness = 0.77
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, -10)
+spread = 20.0
+initial_velocity_min = 818.18
+initial_velocity_max = 1000.0
+linear_accel_min = 26.26
+linear_accel_max = 74.74
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = ExtResource("1_25tpx")
+
+[node name="White" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 1.25
+one_shot = true
+explosiveness = 0.77
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, -10)
+spread = 20.0
+initial_velocity_min = 818.18
+initial_velocity_max = 1000.0
+linear_accel_min = 26.26
+linear_accel_max = 74.74
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = ExtResource("1_25tpx")

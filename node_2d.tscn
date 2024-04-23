@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kfs8qt8qb2al"]
+[gd_scene load_steps=11 format=3 uid="uid://kfs8qt8qb2al"]
 
 [ext_resource type="Texture2D" uid="uid://b7ig70amofry1" path="res://images/output_1164388124_0.jpg" id="1_iopqa"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_o0mxp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b72jub73dkf3v" path="res://cipher.tscn" id="3_ym2ap"]
 [ext_resource type="Script" path="res://Path2D2.gd" id="5_d5hf4"]
 [ext_resource type="PackedScene" uid="uid://baymuluqxo2qy" path="res://murderhole.tscn" id="5_iy5r0"]
+[ext_resource type="PackedScene" uid="uid://bfkl08awcvr7e" path="res://platform.tscn" id="7_sup70"]
 
 [sub_resource type="Curve2D" id="Curve2D_4blls"]
 _data = {
@@ -15,7 +16,7 @@ point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_1c4nl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 53, 109, 0, 0, 0, 0, 1083, 110)
+"points": PackedVector2Array(0, 0, 0, 0, 11, 109, 0, 0, 0, 0, 1128, 109)
 }
 point_count = 2
 
@@ -59,13 +60,46 @@ curve = SubResource("Curve2D_1c4nl")
 script = ExtResource("5_d5hf4")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
-position = Vector2(53, 109)
-rotation = 0.000970874
+position = Vector2(11, 109)
 
 [node name="Node2D" parent="Path2D2/PathFollow2D" instance=ExtResource("5_iy5r0")]
-position = Vector2(-2.86102e-06, 1.54972e-06)
+position = Vector2(2.95586e-12, 1.54972e-06)
 rotation = 0.00323623
 interval = 12.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i3b72")
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="T" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(102, 600)
+expected = "T"
+
+[node name="R" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(163, 600)
+expected = "R"
+
+[node name="U" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(222, 600)
+expected = "U"
+
+[node name="M" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(283, 600)
+expected = "M"
+
+[node name="P" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(344, 600)
+expected = "P"
+
+[node name="W" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(948, 600)
+expected = "W"
+
+[node name="O" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(1009, 600)
+expected = "O"
+
+[node name="N" parent="Platforms" instance=ExtResource("7_sup70")]
+position = Vector2(1070, 600)
+expected = "N"

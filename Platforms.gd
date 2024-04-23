@@ -1,5 +1,13 @@
 # A group of platforms, represents a phrase.
 
+# Example usage
+#self.platforms = Platforms.New(
+#	self.phrase,
+#	self.screen_size,
+#	Vector2(0, self.screen_size.y - 10)
+#)
+#self.add_child(self.platforms)
+
 class_name Platforms
 
 extends Node2D

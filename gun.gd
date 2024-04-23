@@ -32,8 +32,8 @@ func _ready() -> void:
 		)
 	self.line = Line2D.new()
 	get_parent().add_child(self.line)
-	self.line.width = 2
-	self.line.modulate = Color.RED
+	self.line.width = 5
+	self.line.modulate = Color(1.0, 0.0, 0.0, 0.25)
 
 func _process(delta : float) -> void:
 	if Input.is_action_pressed("ui_left"):
