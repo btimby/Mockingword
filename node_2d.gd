@@ -3,20 +3,28 @@ extends Node2D
 
 @onready var screen_size := get_viewport().get_visible_rect().size
 @onready var platforms_node : Node = get_node("Platforms")
+@onready var game := get_tree().get_current_scene()
+@onready var obstacles = [
+	get_node("Path2D2/PathFollow2D/Node2D"),
+	get_node("Path2D/PathFollow2D/Obstacle2"),
+]
 
-var phrase := "TRUMP WON"
+var phrase : Array[String]
 var queue : Queue
 var platforms : Array[Platform]
-var _won : bool
+var won : bool
 var gun : Node2D
 var left : StaticBody2D
 var right : StaticBody2D
+
+signal achieved_victory
 
 func _ready() -> void:
 	self._create_boundaries()
 	for p : Platform in self.platforms_node.get_children():
 		p.letter_completed.connect(func (): self._on_letter_completed(p))
 		self.platforms.append(p)
+		self.phrase.append(p.expected)
 	self.gun = Gun.New(Vector2(self.screen_size.x / 2, 0))
 	self.add_child(self.gun)
 	self.queue = Queue.New(
@@ -32,14 +40,24 @@ func _on_letter_completed(platform : Platform) -> void:
 			continue
 		return
 	# Player won!
-	self._won = true
+	self.won = true
 	var t := Timer.new()
 	t.wait_time = 1.0
 	t.timeout.connect(self._fire_salvo)
 	self.add_child(t)
 	t.start()
 	self._fire_salvo()
+	self._disable_obstacles()
+	self._disable_platforms()
 	# TODO: call game scene to count score and advance game.
+
+func _disable_obstacles() -> void:
+	for o in self.obstacles:
+		o.safe_mode = true
+
+func _disable_platforms() -> void:
+	for p in self.platforms:
+		p.disabled = true
 
 func _fire_salvo() -> void:
 	for p in self.platforms:
@@ -61,14 +79,6 @@ func _create_boundaries() -> void:
 	self.right = self._create_sbody()
 	self.right.position.x = 0
 	self.right.position.y = self.screen_size.y / 2
-
-func _input(event : InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
-
-func _process(delta : float) -> void:
-	if Input.is_action_pressed("ui_select"):
-		self.shoot()
 
 func shoot() -> void:
 	if self.gun.reloading:

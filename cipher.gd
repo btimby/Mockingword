@@ -15,6 +15,8 @@ var _timer : Timer
 @export var width : int = 41
 @export var height : int = 41
 
+var safe_mode : bool = false
+
 func _ready() -> void:
 	self._timer = Timer.new()
 	self._timer.wait_time = self.redraw

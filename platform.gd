@@ -6,15 +6,17 @@ extends StaticBody2D
 
 const PlatformScene := preload("res://platform.tscn")
 
-@export var expected : String
+@export var expected : String             # The goal for this platform
 
 @onready var letter_sprite : Sprite2D = get_node("LetterSprite")
 
-var _letter : String
-var letter : String:
+var _letter : String                      # Current letter shadow value
+var letter : String:                      # Current letter
 	get = get_letter, set = set_letter
+var disabled : bool = false               # Ignore letters
 
-signal letter_completed
+signal letter_completed                   # Raised when the expected letter is
+										  # captured
 
 static func New(x : int, y : int, char : String) -> Platform:
 	var new = PlatformScene.instantiate()
@@ -24,12 +26,15 @@ static func New(x : int, y : int, char : String) -> Platform:
 	return new
 
 func capture(letter : Letter) -> void:
+	letter.queue_free()
+	if self.disabled:
+		# NOTE: if this platform is disabled, it ignores letters.
+		return
 	print("Captured")
 	self.letter = letter.letter
 	if check_complete():
 		self.confetti()
 		self.letter_completed.emit()
-	letter.queue_free()
 
 func confetti() -> void:
 	print("Confetti")

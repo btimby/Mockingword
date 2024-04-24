@@ -4,14 +4,15 @@ class_name Queue
 
 extends Node2D
 
+const DURATION = 0.25
 const QueueScene := preload("res://queue.tscn")
 
 var capacity : int
 var slots : Array[Slot]
-var phrase : String
+var phrase : Array[String]
 var letters : Array[String]
 
-static func New(phrase : String, capacity : int, position : Vector2) -> Queue:
+static func New(phrase : Array[String], capacity : int, position : Vector2) -> Queue:
 	var new := QueueScene.instantiate()
 	new.phrase = phrase
 	new.capacity = capacity
@@ -27,7 +28,7 @@ func _ready() -> void:
 		var slot := self.add_slot(
 			Slot.New(
 				self.letters,
-				Vector2(self.position.x + i * 60, self.position.y))
+				Vector2(self.position.x + i * 60, self.position.y), DURATION)
 		)
 		if i > 0:
 			slot.sprite.modulate.a = 0.3
@@ -42,7 +43,7 @@ func shift() -> String:
 	var tail = self.add_slot(
 		Slot.New(
 			self.letters,
-			Vector2(self.position.x + self.capacity * 60, self.position.y))
+			Vector2(self.position.x + self.capacity * 60, self.position.y), DURATION),
 		)
 	for s in self.slots:
 		s.slide_left(60)
